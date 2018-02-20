@@ -4,6 +4,7 @@
 (set-env! :resource-paths #{"resources" "src"}
           :source-paths   #{"test"}
           :dependencies   '[[org.clojure/clojure "1.8.0"]
+                            [com.googlecode.lanterna/lanterna "3.0.0"]
                             [adzerk/boot-test "RELEASE" :scope "test"]])
 
 (task-options!
@@ -24,10 +25,10 @@
   (let [dir (if (seq dir) dir #{"target"})]
     (comp (aot) (pom) (uber) (jar) (target :dir dir))))
 
-(deftask run
-  "Run the project."
+(deftask start
+  "Start a game of Evolution of Light"
   [a args ARG [str] "the arguments for the application."]
   (require '[eol.core :as app])
   (apply (resolve 'app/-main) args))
 
-(require '[adzerk.boot-test :refer [test]])
+(require '[adzerk.boot-test :refer :all])

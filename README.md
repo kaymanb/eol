@@ -1,44 +1,29 @@
 # Evolution of Light
 
-A Roguelike Adventure Game
+A Roguelike Adventure Game written in Clojure.
 
 ## Installation
 
 Download from https://github.com/kaymanb/eol
 
-## Usage
+## Details
 
-FIXME: explanation
+This project is built using [boot](https://github.com/boot-clj/boot).
 
-Run the project directly:
+Run start a new game:
 
-    $ boot run
+    $ boot start
 
-Run the project's tests (they'll fail until you edit them):
+Run the project's tests:
 
     $ boot test
 
-Build an uberjar from the project:
-
-    $ boot build
-
-Run the uberjar:
-
-    $ java -jar target/eol-0.1.0-SNAPSHOT-standalone.jar [args]
-
-## Options
-
-FIXME: listing of options this app accepts.
-
-## Examples
-
-...
-
-### Bugs
-
-...
-
 ### Roadmap
 
-...
+- Update README.md
+- Create wrapper library for lanterna, enough to use [muli-windows](https://github,com/mabe02/lanterna/blob/master/docs/tutorial/Tutorial04.md) to develop the game.
+
+## Other
+
+I once planned on writting this game in Python. I didn't get very far, but what I did get done still exists under the name [evolution_of_light_python](https://github.com/kaymanb/evolution_of_light_python).
 
