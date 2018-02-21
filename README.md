@@ -21,7 +21,7 @@ Run the project's tests:
 ### Roadmap
 
 - Update README.md
-- Create wrapper library for lanterna, enough to use [muli-windows](https://github,com/mabe02/lanterna/blob/master/docs/tutorial/Tutorial04.md) to develop the game.
+- Create basic game loop
 
 ## Other
 
