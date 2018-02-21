@@ -1,17 +1,23 @@
 (ns eol.core
-  (:import com.googlecode.lanterna.TextCharacter)
   (:require [eol.lanterna-clj.core :as l])
   (:gen-class))
+
+(defn create-state
+  "Return a blank game state"
+  [] {:dims {:rows 80 :cols 20}})
 
 (defn new-game
   "Setup and start a new game"
   []
   (let [screen (l/create-screen)]
     (l/in-screen screen 
-      (let [[rows cols] (l/get-dimensions screen)]
-        (.setCharacter screen (quot rows 2) (quot cols 2) (TextCharacter. \%))
+      (let [state (create-state)
+            dims (get state :dims)]
+        (doseq [x (vec (range (get dims :rows)))
+                y (vec (range (get dims :cols)))]
+          (l/set-char screen x y \#))
         (.refresh screen)
-        (Thread/sleep 5000)))))
+        (l/get-input screen)))))
 
 (defn -main
   "Executeded by 'boot start'."

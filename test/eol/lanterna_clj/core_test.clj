@@ -10,11 +10,16 @@
     (testing "create-screen"
       (is (some? (create-screen)))))
 
-    (testing "get-size"
+    (testing "get-dimensions"
       (let [screen (create-screen)
             [rows cols] (get-dimensions screen)]
         (is (> rows 0))
         (is (> cols 0))))
+    
+    (testing "set-char"
+      (let [screen (create-screen)]
+        (set-char screen 0 0 \%)
+        (is (some? (.getBackCharacter screen 0 0)))))
     
     (testing "in-screen"
       (let [screen (create-screen)]
