@@ -2,6 +2,7 @@
   (:require [clojure.test :refer :all]
             [eol.core :refer :all]))
 
-(deftest a-test
+(deftest core-test
   (testing "Something works..."
     (is (= (something) 1))))
+    
