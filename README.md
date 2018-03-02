@@ -4,7 +4,7 @@ A Roguelike Adventure Game written in Clojure.
 
 ## Installation
 
-Download from https://github.com/kaymanb/eol
+Clone from https://github.com/kaymanb/eol
 
 ## Details
 
@@ -22,6 +22,7 @@ Run the project's tests:
 
 - Update README.md
 - Create basic game loop
+- Randomly generate rooms
 
 ## Other
 

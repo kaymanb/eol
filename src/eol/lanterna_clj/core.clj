@@ -30,10 +30,16 @@
         rows (.getRows dims)]
     [cols rows]))
 
+(defn put-string
+  "Prints a string starting from given coordinates"
+  [s x y screen]
+  (-> (.newTextGraphics screen)
+      (.putString x y s)))
+
 (defn set-char
-  "Set a character at the given row and column."
-  [screen row col c] 
-  (.setCharacter screen row col (TextCharacter. c)))
+  "Set a character at the given coordinates."
+  [c x y screen] 
+  (.setCharacter screen x y (TextCharacter. c)))
 
 (defmacro in-screen
   "Start the screen and perform the body, then close."
@@ -45,7 +51,7 @@
       (finally (.stopScreen screen#)))))
 
 ;; Input
-(defn get-input
+(defn read-input
   "Block until keystroke on input screen and return."
   [screen]
   (.readInput screen))

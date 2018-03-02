@@ -15,10 +15,15 @@
             [rows cols] (get-dimensions screen)]
         (is (> rows 0))
         (is (> cols 0))))
-    
+  
+    (testing "put-string"
+      (let [screen (create-screen)]
+        (put-string "Test" 0 0 screen)
+        (is (some? (.getBackCharacter screen 0 0)))))
+
     (testing "set-char"
       (let [screen (create-screen)]
-        (set-char screen 0 0 \%)
+        (set-char \% 0 0 screen)
         (is (some? (.getBackCharacter screen 0 0)))))
     
     (testing "in-screen"
@@ -27,6 +32,6 @@
 
     (testing "refresh"
       (let [screen (create-screen)]
-        (set-char screen 0 0 \%)
+        (set-char \% 0 0 screen)
         (refresh screen)
         (is (some? (.getFrontCharacter screen 0 0)))))
