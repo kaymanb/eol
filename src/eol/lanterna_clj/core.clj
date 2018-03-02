@@ -23,7 +23,7 @@
   ([terminal] (TerminalScreen. terminal)))
 
 (defn get-dimensions
-  "Return the dimensions of the screen as [rows cols]."
+  "Return the dimensions of the screen as [cols rows]."
   [screen]
   (let [dims (.getTerminalSize screen)
         cols (.getColumns dims)
