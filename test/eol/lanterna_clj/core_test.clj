@@ -2,7 +2,7 @@
   (:require [clojure.test :refer :all]
             [eol.lanterna-clj.core :refer :all]))
 
-(deftest -test
+(deftest lanterna-clj-test
   (testing "Terminal wrappers"
     (is (some? (create-terminal))))
 

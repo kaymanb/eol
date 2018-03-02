@@ -1,28 +1,34 @@
 (ns eol.core
   (:require [eol.lanterna-clj.core :as l])
+  (:require [eol.ui :as ui])
   (:gen-class))
 
-(defn create-state
-  "Return a blank game state"
-  [] {:dims {:rows 80 :cols 20}})
+(defn draw-sec
+  "Draws a section of the UI according"
+  [section, screen, c]
+  (let [off-x (get-in section [:origin :x])
+        off-y (get-in section [:origin :y])]
+
+    ;; Draw section to screen char by char
+    (doseq [x (vec (range (get section :length)))
+            y (vec (range (get section :height)))]
+      (l/set-char screen (+ x off-x) (+ y off-y) c))
+    (.refresh screen)))
 
 (defn draw-game
   "Draw the state to the screen"
-  [state, screen]
-  (let [dims (get state :dims)]
-    
-    ;; Only refresh the screen once each tile has been drawn.
-    (doseq [x (vec (range (get dims :rows)))
-            y (vec (range (get dims :cols)))]
-      (l/set-char screen x y \#))
-    (.refresh screen)))
+  [screen]
+  (let [dims (ui/ui-dimensions)]
+    (draw-sec (get dims :game) screen \#)
+    (draw-sec (get dims :stats) screen \$)
+    (draw-sec (get dims :msg) screen \!)))
 
 (defn new-game
   "Setup and start a new game"
   []
   (let [screen (l/create-screen)]
     (l/in-screen screen 
-      (draw-game (create-state) screen)
+      (draw-game screen)
       (l/get-input screen))))
 
 (defn -main
