@@ -13,15 +13,13 @@
     (doseq [x (vec (range (get section :length)))
             y (vec (range (get section :height)))]
       (l/set-char screen (+ x off-x) (+ y off-y) c))
-    (.refresh screen)))
+    (l/refresh screen)))
 
 (defn draw-game
   "Draw the state to the screen"
   [screen]
   (let [dims (ui/ui-dimensions)]
-    (draw-sec (get dims :game) screen \#)
-    (draw-sec (get dims :stats) screen \$)
-    (draw-sec (get dims :msg) screen \!)))
+    (draw-sec (get dims :game) screen \#)))
 
 (defn new-game
   "Setup and start a new game"

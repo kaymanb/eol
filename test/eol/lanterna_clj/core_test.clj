@@ -24,3 +24,9 @@
     (testing "in-screen"
       (let [screen (create-screen)]
       (is (= 1 (in-screen screen (let [x 1] x)))))))
+
+    (testing "refresh"
+      (let [screen (create-screen)]
+        (set-char screen 0 0 \%)
+        (refresh screen)
+        (is (some? (.getFrontCharacter screen 0 0)))))

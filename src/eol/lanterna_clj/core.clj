@@ -13,6 +13,10 @@
       .createTerminal))
 
 ;; Screen
+(defn refresh 
+  "Refreshes the screen."
+  [screen] (.refresh screen))
+
 (defn create-screen
   "Create a new screen."
   ([] (create-screen (create-terminal)))

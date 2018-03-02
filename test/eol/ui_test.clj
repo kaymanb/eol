@@ -20,7 +20,7 @@
     (testing "Overall UI dimensions"
       (let [dims (ui-dimensions)]
         (is (= (get-in dims [:game :height]) 20))
-        (is (= (get-in dims [:stats :height]) 80))))))
+        (is (= (get-in dims [:stats :height]) 30))))))
       
     
 
