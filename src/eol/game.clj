@@ -3,10 +3,14 @@
   (:require [eol.draw :refer [draw-game]])
   (:gen-class))
 
+(defn initial-state
+  "Return initial game state"
+  [] {:key \g})
+
 (defn handle-input
   "Returns a new game state based on input."
-    [state, input]
-      (assoc state :key input))
+  [state, input]
+    (assoc state :key input))
 
 (defn game-loop
   "Main loop for the game."

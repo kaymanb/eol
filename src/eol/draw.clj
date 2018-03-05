@@ -3,6 +3,13 @@
   (:require [eol.ui :as ui])
   (:gen-class))
 
+(defn print-center
+  "Prints to the horizontal center of the screen."
+  [screen, s, y]
+  (let [[cols rows] (l/get-dimensions screen)
+        start-x (quot (- cols (count s)) 2)]
+    (l/put-string screen s start-x y)))
+
 (defn get-offset
   "Gets the offset x and y coordinates for a section."
   [section]
