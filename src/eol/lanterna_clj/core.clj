@@ -32,14 +32,19 @@
 
 (defn put-string
   "Prints a string starting from given coordinates"
-  [s x y screen]
+  [screen s x y]
   (-> (.newTextGraphics screen)
       (.putString x y s)))
 
 (defn set-char
   "Set a character at the given coordinates."
-  [c x y screen] 
+  [screen c x y] 
   (.setCharacter screen x y (TextCharacter. c)))
+
+(defn clear
+  "Clears the screen of all characters."
+  [screen]
+  (.clear screen))
 
 (defmacro in-screen
   "Start the screen and perform the body, then close."
@@ -52,7 +57,7 @@
 
 ;; Input
 (defn read-input
-  "Block until keystroke on input screen and return."
+  "Block until keystroke on input screen and return the key pressed."
   [screen]
-  (.readInput screen))
+  (.getCharacter (.readInput screen)))
 

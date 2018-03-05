@@ -8,7 +8,7 @@
 
   (testing "Screen wrappers"
     (testing "create-screen"
-      (is (some? (create-screen)))))
+      (is (some? (create-screen))))
 
     (testing "get-dimensions"
       (let [screen (create-screen)
@@ -18,12 +18,12 @@
   
     (testing "put-string"
       (let [screen (create-screen)]
-        (put-string "Test" 0 0 screen)
+        (put-string screen "Test" 0 0)
         (is (some? (.getBackCharacter screen 0 0)))))
 
     (testing "set-char"
       (let [screen (create-screen)]
-        (set-char \% 0 0 screen)
+        (set-char screen \% 0 0)
         (is (some? (.getBackCharacter screen 0 0)))))
     
     (testing "in-screen"
@@ -32,6 +32,12 @@
 
     (testing "refresh"
       (let [screen (create-screen)]
-        (set-char \% 0 0 screen)
+        (set-char screen \% 0 0)
         (refresh screen)
         (is (some? (.getFrontCharacter screen 0 0)))))
+
+    (testing "clear"
+      (let [screen (create-screen)]
+        (set-char screen \f 0 0)
+        (clear screen)
+        (is (= " " (str (.getCharacter (.getBackCharacter screen 0 0))))))))

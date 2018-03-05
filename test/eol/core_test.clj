@@ -4,5 +4,5 @@
 
 (deftest core-test
   (testing "Something works..."
-    (is (= (something) 1))))
+    (is (= 1 1))))
     
