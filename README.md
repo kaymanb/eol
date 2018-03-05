@@ -21,7 +21,6 @@ Run the project's tests:
 ### Roadmap
 
 - Update README.md
-- Create basic game loop
 - Randomly generate rooms
 
 ## Other
