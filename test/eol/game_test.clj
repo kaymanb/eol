@@ -4,6 +4,11 @@
 
 (deftest game-test
   (testing "Game logic"
+
+    (testing "initial-level"
+      (let [c (get (-> (initial-level 1 1) (peek) (peek)) :char)]
+      (is (= c \#))))
+        
     
     (testing "handle-input"
       ;; Stub for now...
