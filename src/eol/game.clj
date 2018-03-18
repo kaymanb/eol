@@ -20,7 +20,18 @@
     :desc "wall"
   })
 
-(defn initial-level
+(defn add-tile
+  "Adds the input tiles to the map at each coordinate."
+  [tile, x, y, m]
+  (assoc m x
+    (assoc (get m x) y tile)))
+
+(defn add-room
+  "Adds a room to the input map."
+  [m]
+  ("stub")
+
+(defn initial-map
   "Returns the tileset for the inital level."
   [length, height]
   (vec (repeat length
@@ -36,7 +47,7 @@
     :msg "You emerge in a dark and spooky dungeon..."
     :curr-level 0
     :levels [
-     (initial-level length height) 
+     (initial-map length height) 
     ]
   }))
 
@@ -48,7 +59,8 @@
 (defn game-loop
   "Main loop for the game."
   [screen, state]
+  ;; Remember state is an atom
   (loop [s state]
-    (draw-game screen s)
+    (draw-game screen s) 
     (l/refresh screen)
     (recur (handle-input s (l/read-input screen)))))
