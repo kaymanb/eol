@@ -29,7 +29,7 @@
 (defn add-room
   "Adds a room to the input map."
   [m]
-  ("stub")
+  ("stub"))
 
 (defn initial-map
   "Returns the tileset for the inital level."
