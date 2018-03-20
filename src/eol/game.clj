@@ -26,10 +26,34 @@
   (assoc m x
     (assoc (get m x) y tile)))
 
-(defn add-room
-  "Adds a room to the input map."
-  [m]
-  ("stub"))
+(defn add-block-tiles
+  "Adds a block of tiles to the map, from ix to sx and iy to sy."
+  [tile, ix, iy, sx, sy, im]
+  
+  ;; loop over each x and y pair, adding a tile for each
+  (loop [x ix y iy m im]
+    (if (>= x sx)
+      (recur ix (+ y 1) m)  
+      (if (>= y sy)
+        m
+        (recur (+ x 1) y (add-tile tile x y m))))))
+
+(defn measure-wall
+  "Returns a starting position for a wall of length l"
+  [l, max-l] (+ 1 (rand-int (- max-l l 2))))
+
+(defn measure-room
+  "Finds space for a random wxh room in the map with dimensions."
+  [w, h, m]
+  (let [max-w (count m)
+        max-h (count (get m 1))]
+    [(measure-wall w max-w) (measure-wall w max-h)]))
+
+(defn carve-room
+  "Adds a room to the input map and returns the new one."
+  [w, h, m]
+  (let [[x y] (measure-room w h m)]
+    (add-block-tiles (create-space) x y (+ x w) (+ y h) m)))
 
 (defn initial-map
   "Returns the tileset for the inital level."
@@ -47,7 +71,7 @@
     :msg "You emerge in a dark and spooky dungeon..."
     :curr-level 0
     :levels [
-     (initial-map length height) 
+     (carve-room 10 10 (initial-map length height))
     ]
   }))
 
@@ -59,8 +83,8 @@
 (defn game-loop
   "Main loop for the game."
   [screen, state]
-  ;; Remember state is an atom
   (loop [s state]
     (draw-game screen s) 
     (l/refresh screen)
     (recur (handle-input s (l/read-input screen)))))
+
